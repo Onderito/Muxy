@@ -10,3 +10,5 @@ export const favoriteSchema = z.object({
   type: z.enum(["track", "playlist"]), // pour savoir si c'est une chanson ou une playlist
   createdAt: z.date().optional(),
 });
+
+export type favoriteSchema = z.infer<typeof favoriteSchema>;

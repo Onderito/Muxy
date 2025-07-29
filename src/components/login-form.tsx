@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "../../server/user";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function LoginForm({
   className,
@@ -26,15 +27,19 @@ export function LoginForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // empêcher le refresh du formulaire
     const result = await signIn(email, password); // appeler la fonction de création de compte
+
     if (result.success) {
+      toast.success("Login successful");
       router.push("/dashboard"); // ✅ redirection
+    } else {
+      toast.error("Login failed");
     }
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
+          <CardTitle className="text-xl">Hi friends</CardTitle>
           <CardDescription>
             Login with your Apple or Google account
           </CardDescription>

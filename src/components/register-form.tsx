@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signUp } from "../../server/user";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function RegisterForm({
   className,
@@ -31,9 +32,10 @@ export function RegisterForm({
     console.log(result); // 👀 affiche le résultat dans la console
 
     if (result.success) {
+      toast.success("Signup successful");
       router.push("/login"); // ✅ redirection
     } else {
-      console.log("signup failed");
+      toast.error("Signup failed");
     }
   };
   return (
@@ -112,11 +114,11 @@ export function RegisterForm({
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Login
+                  Create account
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
+                Do you have an account?{" "}
                 <a href="/login" className="underline underline-offset-4">
                   Sign in
                 </a>

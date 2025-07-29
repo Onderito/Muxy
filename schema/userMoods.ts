@@ -5,3 +5,5 @@ export const userMoodsSchema = z.object({
   moodId: z.string(),
   createdAt: z.date().optional(),
 });
+
+export type userMoodsSchema = z.infer<typeof userMoodsSchema>;
