@@ -24,7 +24,7 @@ export default function Welcome() {
           Let's Started now
         </Button>
       </div>
-      <div className="absolute inset-0 -z-10 hidden xl:block">
+      <div className="absolute inset-0 -z-10">
         <Image
           className=""
           src="/bg-gradient-4k.webp" // remplace par le bon chemin
