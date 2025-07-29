@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   const { name, imageUrl } = parse.data;
 
   try {
-    const db = client.db(process.env.MONGODB_DB);
+    const db = client.db();
     const collection = db.collection("mood");
 
     const result = await collection.insertOne({
@@ -23,5 +23,17 @@ export async function POST(request: Request) {
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json({ message: "Erreur serveyr" }, { status: 500 });
+  }
+}
+
+export async function GET(request: Request) {
+  try {
+    const db = client.db();
+    const collection = db.collection("mood");
+
+    const findMoods = await collection.find().toArray();
+    return NextResponse.json(findMoods);
+  } catch (error) {
+    return NextResponse.json({ message: "Erreur serveur" }, { status: 500 });
   }
 }

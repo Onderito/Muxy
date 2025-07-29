@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   const { moodId, createdAt, userId } = parse.data;
 
   try {
-    const db = client.db(process.env.MONGODB_DB);
+    const db = client.db();
     const collection = db.collection("userMoods");
 
     const result = await collection.insertOne({
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const db = client.db(process.env.MONGODB_DB);
+    const db = client.db();
     const collection = db.collection("userMoods");
 
     const findMoods = await collection.find().toArray(); // afin de tout récupérer et pas un seul.
